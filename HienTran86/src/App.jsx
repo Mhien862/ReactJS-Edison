@@ -5,30 +5,32 @@ import Main from './components/Main'
 import Footer from './components/Footer'
 import { useState } from 'react'
 
+const DemoCompopnent = (props) => {
+  return (
+    <div>
+    <div>Day la tuoi : {props.age}</div>
+    <div>Day la tuoi : {props.displayname}</div>
+
+    </div>
+  );
+};
+
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
+  const [age, setAge] = useState(0);
+  const [name, setName] = useState('Hien')
 
-  const onLoginClick = () => {
-    console.log("onLoginClick");
-    setIsLogin(true);
-  };
+  const onIncreaseAge = () => {
+    setAge(age +1 );
+};
 
-  const onLogoutClick = () => {
-    console.log("onLoginClick");
-    setIsLogin(false);
-  };
-
-    
-    
-   return (
-   <div>
-    <Header isLogined={isLogin} 
-    onLogin={onLoginClick}
-    onLogout={onLogoutClick}/>
-    <Main/>
-    <Footer/>        
-   </div>
-   );
-}
+  return ( 
+    <div className='containert'>
+      <div>{age}</div>
+      <div onClick={onIncreaseAge}>+1 gia tri </div>
+      <DemoCompopnent age={age} displayname={name} />
+    </div>
+  );
+  }
+ 
 
 export default App;
