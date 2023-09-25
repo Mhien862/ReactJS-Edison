@@ -1,36 +1,35 @@
+/* eslint-disable react/prop-types */
 
 import './App.css'
+// eslint-disable-next-line no-unused-vars
 import Header from './components/Header'
+// eslint-disable-next-line no-unused-vars
 import Main from './components/Main'
+// eslint-disable-next-line no-unused-vars
 import Footer from './components/Footer'
 import { useState } from 'react'
 
-const DemoCompopnent = (props) => {
+function App() {
+  const [userInput, setUserInput] = useState("");
+  const handleInputChange = (a) => {
+    setUserInput(a.target.value);
+  };
+  const handleButtonClick = (a) => {
+    alert(userInput)
+  }
   return (
     <div>
-    <div>Day la tuoi : {props.age}</div>
-    <div>Day la tuoi : {props.displayname}</div>
-
+      <input
+        type="text"
+        name="user"
+        placeholder="Please type somthing"
+        onChange={handleInputChange}
+      />
+      <button
+        onClick={handleButtonClick}
+      >Print</button>
     </div>
   );
-};
-
-function App() {
-  const [age, setAge] = useState(0);
-  const [name, setName] = useState('Hien')
-
-  const onIncreaseAge = () => {
-    setAge(age +1 );
-};
-
-  return ( 
-    <div className='containert'>
-      <div>{age}</div>
-      <div onClick={onIncreaseAge}>+1 gia tri </div>
-      <DemoCompopnent age={age} displayname={name} />
-    </div>
-  );
-  }
- 
+}
 
 export default App;
