@@ -19,7 +19,7 @@ function UserForm(props) {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="Nhập tên của bạn"
+        placeholder="what is your name "
         value={name}
         onChange={handleNameChange}
       />
