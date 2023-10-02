@@ -1,38 +1,42 @@
 /* eslint-disable react-refresh/only-export-components */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from './App.module.css'
 import { AppContainer } from "./style";
 import Image from './assets/react.svg';
 
 
-function App() {
-  
-   
-    const [time, setTime] = useState('day');
-  
-   
-    const handleTimeChange = (newTime) => {
-      setTime(newTime);
-    };
-  
-    return (
-      <div className="App">
-        <button onClick={() => handleTimeChange('night')}>Night</button>
-        <button onClick={() => handleTimeChange('day')}>Day</button>
-      
-        <div
-          style={{
-            width: '200px',
-            height: '80px',
-            backgroundColor: time === 'day' ? 'blue' : 'black',
-          }}
-        >
-          
-        </div>
-      </div>
-    );
-  }
 
+function App() {
+
+  const [time, setTime] = useState(null);
+
+  
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      const currentTime = new Date().toLocaleTimeString();
+      setTime(currentTime);
+    }, 5000);
+
+    
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  return (
+    <div className="App">
+    
+      {time ? (
+        <p>Thời gian hiện tại sau 5 giây: {time}</p>
+      ) : (
+        <p>Đang đợi...</p>
+      )}
+    </div>
+  );
+}
+
+
+   
+
+  
 
 export default App;
