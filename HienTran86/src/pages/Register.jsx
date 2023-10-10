@@ -5,15 +5,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
   email: yup.string().required("Email is required").email("Email is invalid"),
-  password: yup
+  firstName: yup
     .string()
-    .required("Password is required")
-    .min(3, "Password it nhat 3 ky tu"),
-  confirmpassword: yup.string().required("confirm is required"),
-
+    .required("First name is required")
+    .min(3, "First name it nhat 3 ky tu"),
+  lastName: yup.string().required("Last name is required"),
 });
 
-const Home = () => {
+const Register = () => {
   
   const {
     control,
@@ -21,11 +20,11 @@ const Home = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
+      firstName: "",
+      lastName: "",
       email: "",
-      password: "",
-      confirmpassword: "",
-      
-      
+      address: "",
+      trieuchung: "",
     },
     resolver: yupResolver(schema),
   });
@@ -42,8 +41,30 @@ const Home = () => {
     <div>
       <h3>Form</h3>
       <form onSubmit={handleSubmit(onSubmitFormCallback)}>
-   
-     
+        <Controller
+          name="firstName"
+          control={control}
+          render={({ field }) => {
+            return (
+              <div>
+                <input {...field} type="text" placeholder="First Name" />
+                {errors.firstName && <p>{errors.firstName.message}</p>}
+              </div>
+            );
+          }}
+        />
+        <Controller
+          name="lastName"
+          control={control}
+          render={({ field }) => {
+            return (
+              <div>
+                <input {...field} type="text" placeholder="Last Name" />
+                {errors.lastName && <p>{errors.lastName.message}</p>}
+              </div>
+            );
+          }}
+        />
         <Controller
           name="email"
           control={control}
@@ -56,36 +77,35 @@ const Home = () => {
             );
           }}
         />
-          <Controller
-          name="password"
+           <Controller
+          name="address"
           control={control}
           render={({ field }) => {
             return (
               <div>
-                <input {...field} type="password" placeholder="Password" />
-                {errors["password"] && <p>{errors.password.message}</p>}
+                <input {...field} type="text" placeholder="Address" />
+                {errors["adrees"] }
               </div>
             );
           }}
         />
           <Controller
-          name="confirmpassword"
+          name="trieuchung"
           control={control}
           render={({ field }) => {
             return (
               <div>
-                <input {...field} type="password" placeholder="ConfirmPassword" />
-                {errors["password"] && <p>{errors.password.message}</p>}
+                <input {...field} type="text" placeholder="trieuchung " />
+                {errors["trieuchung"] }
               </div>
             );
           }}
         />
-       
-       
         <button type="submit">Submit Form</button>
       </form>
     </div>
   );
 };
 
-export default Home;
+export default Register;
+
