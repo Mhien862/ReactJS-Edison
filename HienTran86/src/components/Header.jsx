@@ -1,27 +1,34 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 
-
-function Header(props) {
-
-    console.log("props",props);    
-    
-    const handleLogin = () => {
-        props.onLogin();
-    };
-
-    const handleLogout = () => {
-        props.onLogout();
-    };
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsLogin } from '../store/reducers/home';
 
 
+
+function Header() {
+
+   const  homeStore = useSelector((state) => state.home);
+   const dispatch = useDispatch();
+   console.log(222, homeStore)
+
+   const handleOnLogin  = () => {
+    dispatch(setIsLogin(true));
    
+   }
+   const handleOnLogout  = () => {
+    dispatch(setIsLogin(false));
+  
+   }
 
-    
-    return props.isLogined ?
-     (<header> this is navbar <button onClick={handleLogout}>logout</button></header>) : (
-       <button onClick={handleLogin}> login</button> 
-     ) ;
-    
+   return homeStore.isLogin ? (
+    <header>
+        this is navbar <button onClick={handleOnLogout}>logout</button>
+    </header>
+   ) : (
+    <button onClick={handleOnLogin}>Login</button>
+   );
 }
 
 export default Header;
