@@ -10,11 +10,15 @@ const Home = () => {
         <main>this is my main </main>
 
       </AppContextProvider>
-      <footer>this is footer</footer>
+      <footer>this is footer</footer> 
 
-    </div>
+      </div>
   );
 };
 
 
-export default Home;
+export default Home;       
+       
+
+
+

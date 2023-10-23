@@ -6,6 +6,7 @@ import { createRoutesFromChildren } from 'react-router-dom';
 import phonebookReducer, { addPhoneBook, fetchPosts } from "../store/reducers/phonebook";
 import { useEffect } from 'react';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { addStudent } from '../store/reducers/student';
 
 
 
@@ -22,13 +23,13 @@ export const Phonebook = () => {
       },
     });
 
-    const phonebookStore = useSelector(state =>state.Phonebook)
+    const studentStore = useSelector(state =>state.Phonebook)
 
     const dispatch = useDispatch();
 
     const onSubmit = (values) => { 
         const payload = { ...values, id: uuidv4() };
-        dispatch(addPhoneBook(payload))
+        dispatch(addStudent(payload))
     }
   ;
 
@@ -41,7 +42,7 @@ export const Phonebook = () => {
   
     return (
       <div>
-        <h2>PhoneBook</h2>
+        <h2>Add Student</h2>
         <form>
           <Controller name="name" control={control} 
           render={({field}) => (
